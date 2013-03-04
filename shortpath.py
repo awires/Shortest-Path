@@ -2,6 +2,8 @@
 
 from numpy import *
 import os
+import sys
+#import grid
 
 ##------------------------------##
 ##                              ##
@@ -34,7 +36,11 @@ def shortpath(G,beg,end):
                     shortnode = node
 
         if shortnode == 0:
-            print "break"
+            clearscreen()
+            print "Path does not exist. Start over...."
+            print "\n"
+            print "\n"
+            start()
             break
 
         tempcost = visited[shortnode]
@@ -198,8 +204,10 @@ def breadboard():
                     G[temp]={chr(ii+96)+str(kk-1):1, chr(ii+95)+str(kk):1, chr(ii+97)+str(kk):1}
                 else:
                     G[temp]={chr(ii+96)+str(kk-1):1, chr(ii+96)+str(kk+1):1, chr(ii+95)+str(kk):1, chr(ii+97)+str(kk):1}               
-    #print grid
+
+
     adjust(G)
+    #return(G)
 
 
 ##--------------------------##
@@ -213,16 +221,6 @@ def clearscreen():
     else:
         os.system("clear")      
 
-##--------------------------##
-##                          ##
-##  Use network X library   ##
-##  later for visual graph  ##
-##                          ##
-##--------------------------##
-
-def grid(G):
-    
-    return()
 
 ##--------------------------##
 ##                          ##
@@ -233,7 +231,8 @@ def grid(G):
 
 def adjust(G):
     clearscreen()
-    print G
+    for nodes in G:
+        print(nodes),
     print '\n'
     print '\n'
     beg = raw_input('Where do you want to start?  ')
@@ -274,7 +273,7 @@ def info():
 ##--------------------------##        
 def start():
 
-    clearscreen()
+    #clearscreen()
 
     print '###############################################'
     print '#                                             #'
@@ -304,6 +303,8 @@ def start():
         adjust(G)
     elif choice == 0:
         info()
+    else:
+        sys.exit()
         
 start()
 
