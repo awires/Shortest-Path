@@ -1,3 +1,5 @@
+
+
 #requires numpy and pygraph
 
 from numpy import *
@@ -105,18 +107,14 @@ def graphinput():
     print '#                                             #'
     print '#                 Create a graph              #'
     print '#                                             #'
-    print '#     The data you input is placed in         #'
-    print '#     dictionarys so it must be typed in      #'
-    print '#     the proper format.                      #'
-    print '#                                             #'
     print '#     Every edge from every node must be      #'
     print '#     inputed.                                #'
     print '#                                             #'
-    print '#     ex: node 1 goes to 3,4, and 5 at a      #'
+    print '#     ex: vertex 1 goes to 3,4, and 5 at a    #'
     print '#         weight of 1 would be inputed as     #'
     print '#                                             #'
-    print '#     Node: 1                                 #'
-    print '#     Paths from node:  3                     #'
+    print '#     Vertex: 1                               #'
+    print '#     Paths from vertex:  3                   #'
     print '#     Path 1: 3                               #'
     print '#     Weight 1:  1                            #'
     print '#     Path2:  4                               #'
@@ -124,24 +122,21 @@ def graphinput():
     print '#     Path 3:  5                              #'
     print '#     Weight 3:  1                            #'
     print '#                                             #'
-    print '#     Node 3 must also go back to 1, 4 to 1   #'
+    print '#     Vertex 3 must also go back to 1, 4 to 1 #'
     print '#     and 5 to 1 unless it is one way.        #'
     print '#                                             #'
     print '###############################################'
     print '\n'
     print '\n'
     
-    numNode = input("how many nodes are there:  ")
+    numNode = input("how many vertices are there:  ")
     G={}
     for ii in range(1,numNode+1):
         temp=str(ii)
-        tempStr1 = "Node "+temp+":  "
+        tempStr1 = "Vertex "+temp+":  "
         tempNode = raw_input(tempStr1)
-        tempStr2 = "How many paths from node "+tempNode+":  "
+        tempStr2 = "How many paths from vertex "+tempNode+":  "
         tempPaths = input(tempStr2)
-        # Fix this !!!!!!!!!!!!!
-        # fix this !!!!!!!!!!!!!
-        #could probably reset this somewhere else
         tempDict={}
         for jj in range(1,tempPaths+1):
             temp=str(jj)
@@ -165,7 +160,7 @@ def breadboard():
     print '#                                             #'
     print '#                 Breadboard                  #'
     print '#                                             #'
-    print '#  This creates a graph based on a simple     #'
+    print '#  This creates a graph based on a            #'
     print '#  breadboard with rows a-j, columns 1-64     #'
     print '#                                             #'
     print '#  Holes are labeled a1 through j64           #'
@@ -207,7 +202,6 @@ def breadboard():
 
 
     adjust(G)
-    #return(G)
 
 
 ##--------------------------##
@@ -232,7 +226,7 @@ def clearscreen():
 def adjust(G):
     clearscreen()
     for nodes in G:
-        print(nodes),
+        print(nodes),(G[nodes])
     print '\n'
     print '\n'
     beg = raw_input('Where do you want to start?  ')
@@ -279,11 +273,12 @@ def start():
     print '#                                             #'
     print '#                 Make a selection            #'
     print '#                                             #'
-    print '#     0:  Information                         #'
     print '#     1:  Create a graph                      #'
     print '#     2:  Breadboard Graph                    #'
     print '#     3:  Test a simple graph                 #'
     print '#     4:  close                               #'
+    print '#     5:  GUI (requires PyQt and path.py)     #'
+    print '#     0:  Information                         #'
     print '#                                             #'
     print '###############################################'
     print '\n'
@@ -303,6 +298,8 @@ def start():
         adjust(G)
     elif choice == 0:
         info()
+    elif choice == 5:
+        os.system("QtPath.py")
     else:
         sys.exit()
         
