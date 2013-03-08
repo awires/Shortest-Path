@@ -3,10 +3,13 @@ Shortest-Path
 
 (Python) Dijkstra's shortest path
 
-This script allows the user to:
+Shortpath.py allows the user to:
 
 1.  Create a graph
 2.  Edit a large graph based on a 10*64 breadboard
-3.  Find the shortest distance between nodes on a graph
+3.  Find the shortest path between vertices on a graph
 
-Graphs are stored in dictionaries of dictionaries.
+QTpath.py creates graph with 400 vertices represented by a 10x40 table with vertices labeled a1-j40.
+A begining and end vertex are entered and the script finds the shortest path between the points.
+The table is then updated to reflect those vertices are no longer available.
+
