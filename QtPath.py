@@ -7,7 +7,7 @@ import random
 #####################################
 #                                   #
 #   random color                    #
-#   from pyqt Wiki                  #
+#   from pyqt Wiki (copy/paste)     #
 #                                   #
 #####################################
 def randomColor():
@@ -66,15 +66,10 @@ print "worked"
 ##------------------------------##
 
 def shortpath(beg,end):
-    # fix this !!!!!!!!!!!!!!!!!!!!!!
-    # fix this !!!!!!!!!!!!!!!!!!!!!!
-    # fix the way cost is calculated
-
 
     visited = {beg:0}
     path={}
-    #must explicitly copy instead of just using G2=G. Python makes references not copys
-    #otherwise: G=G2, altering G changes G2
+
     G2=dict(G)
     #find all paths!
     while G2:
@@ -102,21 +97,15 @@ def shortpath(beg,end):
                 path[edge] = shortnode
                 
         del G2[shortnode]
-
+    cost = visited[end]
     #shortest path    
     shortestpath = [end]
-    cost=0
+
     while end != beg:
         shortestpath.append(path[end])
         end = path[end]
     shortestpath.reverse()
 
-    #find the cost
-    temp=0
-    for nodes in shortestpath:
-        if temp != 0:
-            cost = cost+G[temp][nodes]
-        temp=nodes
 
     print "Your shortest path is: "
     print shortestpath
