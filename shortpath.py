@@ -1,5 +1,3 @@
-
-
 #requires numpy and pygraph
 
 from numpy import *
@@ -15,60 +13,44 @@ import sys
 ##------------------------------##
 
 def shortpath(G,beg,end):
-    # fix this !!!!!!!!!!!!!!!!!!!!!!
-    # fix this !!!!!!!!!!!!!!!!!!!!!!
-    # fix the way cost is calculated
-    
-
     visited = {beg:0}
     path={}
-    #must explicitly copy instead of just using G2=G. Python makes references not copys
-    #otherwise: G=G2, altering G changes G2
     G2=dict(G)
     #find all paths!
     while G2:
+        #print visited
         shortnode = 0
+        #visited.keys()[len(visited)-1]
         for node in G2:
-            #find shortest path from a node
             if node in visited:
                 if shortnode == 0:
-                    #print "found a smaller one"
-                    shortnode=node
+                    shortnode = node
                 elif visited[node] < visited[shortnode]:
                     shortnode = node
-
         if shortnode == 0:
             clearscreen()
             print "Path does not exist. Start over...."
             print "\n"
             print "\n"
             start()
-            break
 
         tempcost = visited[shortnode]
         for edge in G2[shortnode]:
             cost = tempcost + G2[shortnode][edge]
             if edge not in visited or cost < visited[edge]:
                 visited[edge] = cost
-                path[edge] = shortnode
-                
+                path[edge] = shortnode          
         del G2[shortnode]
 
     #shortest path    
     shortestpath = [end]
-    cost=0
+    cost=visited[end]
 
     while end != beg:
         shortestpath.append(path[end])
         end = path[end]
     shortestpath.reverse()
 
-    #find the cost
-    temp=0
-    for nodes in shortestpath:
-        if temp != 0:
-            cost = cost+G[temp][nodes]
-        temp=nodes
 
     print "Your shortest path is: "
     print shortestpath
